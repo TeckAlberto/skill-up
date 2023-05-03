@@ -25,9 +25,7 @@
     </div>
 
     <div class="gap-4 md:grid md:grid-cols-6">
-        <div class="md:col-span-2">
-            <img class="" src="{{ asset('storage/vacantes/' . $vacante->imagen) }}" alt="{{'Imagen Vacante' . $vacante->titulo}}">
-        </div>
+
 
         <div class="md:col-span-4">
             <h2 class="mb-5 text-2xl font-bold">Descripcion del puesto:</h2>
@@ -43,9 +41,19 @@
         </div>
     @endguest
 
-    @cannot('create', App\Models\Vacante::class)
+    @if(auth()->user()->rol === 1)
         <livewire:postular-vacante :vacante="$vacante" />
-    @endcannot
+    @elseif(auth()->user()->rol === 3)
+        <div class="flex flex-col items-center justify-center p-5 mt-10">
+            <button
+            wire:click="$emit('eliminarPublicacion', {{ $vacante->id }})"
+            class="w-full px-5 py-3 text-xs font-bold text-center text-white uppercase bg-blue-600 rounded-lg mt-7 md:w-auto md:mt-0"
+        >
+            Ocultar Publicacion
+        </button>
+        </div>
+
+    @endif
 
 
 

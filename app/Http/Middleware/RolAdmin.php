@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 
-class RolUsuario
+class RolAdmin
 {
     /**
      * Handle an incoming request.
@@ -16,13 +16,12 @@ class RolUsuario
      */
     public function handle(Request $request, Closure $next)
     {
-        if($request->user()->rol === 1 || $request->user()->rol === 3){
+        if($request->user()->rol !== 3){
             // En caso de que no sea el rol 2, redireccionar al usuario hacia home
 
             return redirect()->route('home');
 
         }
-
 
         return $next($request);
     }

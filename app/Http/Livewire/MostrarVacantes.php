@@ -13,6 +13,7 @@ class MostrarVacantes extends Component
     ];
 
     public function eliminarVacante( Vacante $vacante){
+
          $vacante->delete();
     }
 

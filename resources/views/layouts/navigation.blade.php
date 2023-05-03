@@ -22,8 +22,24 @@
                             <x-nav-link :href="route('vacantes.create')" :active="request()->routeIs('vacantes.create')">
                                 {{ __('Crear vacante') }}
                             </x-nav-link>
+                            {{-- request()->routeIs('vacantes.create') --}}
+                            <x-nav-link :href="route('vacantes.create')" :active="request()->routeIs('vacantes.create')">
+                                {{ __('Crear curso') }}
+                            </x-nav-link>
                         </div>
                     @endcan
+
+                    @if(auth()->user()->rol === 3)
+
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+
+
+                        <x-nav-link :href="route('validaciones.index')" :active="request()->routeIs('validaciones.index')">
+                            {{ __('Ver Solicitudes') }}
+                        </x-nav-link>
+                    </div>
+
+                    @endif
 
                 @endauth
 

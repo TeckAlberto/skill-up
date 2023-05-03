@@ -16,7 +16,7 @@
                             @forelse ($vacante->candidatos as $candidato)
                                 <li class="flex items-center p-3">
                                     <div class="flex-1">
-                                        <p class="text-xl font-medium text-gray-800"><a href="{{ route('profile.show', $candidato->id)}}">{{$candidato->user->name}}</a></p>
+                                        <p class="text-xl font-medium text-gray-800"><a href="{{ route('candidatos.index', $candidato->id)}}">{{$candidato->user->name}}</a></p>
                                         <p class="text-xl text-gray-800">{{$candidato->user->email}}</p>
                                         <p class="text-xl font-medium text-gray-800">Dia que se postulo:
                                             <span class="font-normal">{{$candidato->created_at->diffForHumans()}}</span>
