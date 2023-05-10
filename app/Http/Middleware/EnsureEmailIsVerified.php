@@ -21,7 +21,7 @@ class EnsureEmailIsVerified
      */
     public function handle(Request $request, Closure $next, string $redirectToRoute = null): Response
     {
-        //dd('Holaaaa...');
+
         if($request->user()->rol === 1){
             if ($request->user() && $request->user() instanceof MustVerifyEmail && ! $request->user()->hasVerifiedEmail()) {
                 return $request->expectsJson()
@@ -30,6 +30,7 @@ class EnsureEmailIsVerified
             }
         }else{
             if ($request->user() && $request->user() instanceof MustVerifyEmail && ! $request->user()->hasVerifiedEmail()) {
+                //dd('Holaaaa...');
                 return $request->expectsJson()
                     ? abort(403, 'Your email address is not verified.')
                     : Redirect::guest(URL::route($redirectToRoute ?: 'empresa-validacion.create'));

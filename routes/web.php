@@ -42,7 +42,7 @@ Route::get('candidatos/{vacante}', [CandidatosController::class, 'index'])->name
 Route::get('/notificaciones', NotificacionController::class)->middleware(['auth', 'custom.verify', 'rol.reclutador'])->name('notificaciones');
 
 
-Route::get('empresa-validacion', [ValidacionEmpresaController::class, 'create'])->middleware(['auth', 'custom.verify'])->name('empresa-validacion.create');
+Route::get('empresa-validacion', [ValidacionEmpresaController::class, 'create'])->middleware(['auth', 'rol.reclutador'])->name('empresa-validacion.create');
 
 Route::get('/validaciones', [ValidacionEmpresaController::class, 'index'])->middleware(['auth', 'custom.verify', 'rol.admin'])->name('validaciones.index');
 
