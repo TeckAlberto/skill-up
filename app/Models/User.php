@@ -24,6 +24,12 @@ class User extends Authenticatable implements MustVerifyEmail
         'email',
         'password',
         'rol',
+        'university',
+        'description',
+        'studies',
+        'image',
+        'cv',
+        'contact',
     ];
 
     /**
@@ -48,6 +54,20 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function validacion(){
         return $this->hasOne(ValidacionEmpresa::class);
+    }
+
+    public function perfilCompletado(): bool
+    {
+        if(($this->university === null || $this->description === null || $this->studies === null || $this->image === null || $this->cv === null) && $this->rol === 1)
+        {
+            return true;
+        }
+        else if(($this->description === null || $this->image) && $this->rol === 2)
+        {
+            return true;
+        }
+
+        return false;
     }
 
 }
