@@ -62,7 +62,7 @@ class User extends Authenticatable implements MustVerifyEmail
         {
             return true;
         }
-        else if(($this->description === null || $this->image) && $this->rol === 2)
+        else if(($this->description === null || $this->image === null) && $this->rol === 2)
         {
             return true;
         }

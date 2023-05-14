@@ -33,8 +33,7 @@
                         name="description"
                         id="description"
                         class="w-full text-left border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-50 h-72"
-                        >
-                        {{old('description', $user->description)}}
+                        >{{old('description', $user->description)}}
                     </textarea>
 
                     <x-input-error class="mt-2" :messages="$errors->get('description')" />
@@ -135,7 +134,7 @@
                     />
                     <x-input-error class="mt-2" :messages="$errors->get('image')" />
                     @if ($user->image)
-                        <div  class="my-5 w-80">
+                        <div  class="w-64 my-5">
                             <x-input-label :value="__('Imagen Actual')" />
 
                             <img src="{{asset('storage/images/' . $user->image)}}" alt="{{ 'Imagen Vacante' . " " . $user->name}}">
