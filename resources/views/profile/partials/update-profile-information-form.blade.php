@@ -23,7 +23,7 @@
 
                 <div>
                     <x-input-label for="contact" :value="($user->rol === 2) ? 'Pagina de contacto' : 'Link de curriculum'" />
-                    <x-text-input id="contact" name="contact" type="text" class="block w-full mt-1" :value="old('contact', $user->contact)" required autofocus autocomplete="contact" />
+                    <x-text-input id="contact" name="contact" type="text" class="block w-full mt-1" :value="old('contact', $user->contact)"  autofocus autocomplete="contact" />
 
                 </div>
 

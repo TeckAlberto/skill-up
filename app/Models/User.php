@@ -58,16 +58,16 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function perfilCompletado(): bool
     {
-        if(($this->university === null || $this->description === null || $this->studies === null || $this->image === null || $this->cv === null) && $this->rol === 1)
+        if(($this->university === null || $this->description === null || $this->studies === null || $this->image === null || ($this->cv === null && $this->contact === null)) && $this->rol === 1)
         {
-            return true;
+            return false;
         }
         else if(($this->description === null || $this->image === null) && $this->rol === 2)
         {
-            return true;
+            return false;
         }
 
-        return false;
+        return true;
     }
 
 }

@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use App\Models\Salario;
 use Livewire\Component;
 use App\Models\Categoria;
+use App\Models\Modalidad;
 use App\Models\Vacante;
 use Illuminate\Support\Carbon;
 use Livewire\WithFileUploads;
@@ -16,12 +17,12 @@ class EditarVacante extends Component
     public $titulo;
     public $salario;
     public $categoria;
-    public $empresa;
     public $ultimo_dia;
     public $descripcion;
-    public $imagen;
+    public $modalidad;
+    public $cupos;
 
-    public $imagen_nueva;
+
 
 
     use WithFileUploads;
@@ -31,10 +32,9 @@ class EditarVacante extends Component
         'titulo' => 'required|string',
         'salario' => 'required',
         'categoria' => 'required',
-        'empresa' => 'required',
+        'modalidad' => 'required',
         'ultimo_dia' => 'required',
         'descripcion' => 'required',
-        'imagen_nueva' => 'nullable|image|max:1024',
     ];
 
     public function mount(Vacante $vacante){
@@ -42,21 +42,16 @@ class EditarVacante extends Component
         $this->titulo = $vacante->titulo;
         $this->salario = $vacante->salario_id;
         $this->categoria = $vacante->categoria_id;
-        $this->empresa = $vacante->empresa;
+        $this->modalidad = $vacante->modalidad_id;
         $this->ultimo_dia = Carbon::parse( $vacante->ultimo_dia)->format('Y-m-d');
         $this->descripcion = $vacante->descripcion;
-        $this->imagen = $vacante->imagen;
     }
 
     public function editarVacante(){
         $datos = $this->validate();
 
         //Revisar si hay nueva imagen
-        if($this->imagen_nueva){
 
-            $imagen = $this->imagen_nueva->store('public/vacantes');
-            $datos['imagen'] = str_replace('public/vacantes/', '', $imagen);
-        }
 
 
         //Encontrar la vacante a editar
@@ -66,10 +61,9 @@ class EditarVacante extends Component
         $vacante->titulo = $datos['titulo'];
         $vacante->salario_id = $datos['salario'];
         $vacante->categoria_id = $datos['categoria'];
-        $vacante->empresa = $datos['empresa'];
+        $vacante->modalidad_id = $datos['modalidad'];
         $vacante->ultimo_dia = $datos['ultimo_dia'];
         $vacante->descripcion = $datos['descripcion'];
-        $vacante->imagen = $datos['imagen'] ?? $vacante->imagen;
 
         //Guaradar la vacante
         $vacante->save();
@@ -86,11 +80,13 @@ class EditarVacante extends Component
         // Consultar DB
         $salarios = Salario::all();
         $categorias = Categoria::all();
+        $modalidades = Modalidad::all();
 
 
         return view('livewire.editar-vacante', [
             'salarios' => $salarios,
-            'categorias' => $categorias
+            'categorias' => $categorias,
+            'modalidades' => $modalidades
         ]);
     }
 }

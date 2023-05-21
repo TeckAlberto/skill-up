@@ -26,8 +26,8 @@
                 class="w-full text-center border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
             >
                 <option value="">--Selecciona un rol--</option>
-                <option value="1">Developer - Obtener empleo</option>
-                <option value="2">Recruiter - Publicar empleos</option>
+                <option value="1">Estudiante - Obtener empleo</option>
+                <option value="2">Empresa - Publicar empleos</option>
             </select>
 
             <x-input-error :messages="$errors->get('rol')" class="mt-2" />

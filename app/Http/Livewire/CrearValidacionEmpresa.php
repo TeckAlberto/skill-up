@@ -17,7 +17,7 @@ class CrearValidacionEmpresa extends Component
 
     protected $rules = [
         'rfc' => 'required|string|size:12',
-        'telefono' => 'required',
+        'telefono' => 'required|size:10',
         'correo' => 'required|email',
         'comprobante' => 'required|mimes:pdf',
     ];

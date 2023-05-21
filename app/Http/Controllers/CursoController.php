@@ -2,18 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Curso;
 use Illuminate\Http\Request;
 
 class CursoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        $this->authorize('viewAny', Curso::class);
+        return view('cursos.index');
     }
 
     /**
@@ -21,21 +18,11 @@ class CursoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+    // public function create()
+    // {
+    //     $this->authorize('create', Curso::class);
+    //     return view('vacantes.create');
+    // }
 
     /**
      * Display the specified resource.
@@ -43,9 +30,11 @@ class CursoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Curso $curso)
     {
-        //
+        return view('cursos.show', [
+            'curso' => $curso
+        ]);
     }
 
     /**
@@ -54,31 +43,13 @@ class CursoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Curso $curso)
     {
-        //
-    }
+        //dd($vacante);
+        $this->authorize('update', $curso);
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        return view('cursos.edit', [
+            'curso' => $curso
+        ]);
     }
 }

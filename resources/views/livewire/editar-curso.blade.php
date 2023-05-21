@@ -1,7 +1,7 @@
 <form class="space-y-5 md:w-1/2" action="" wire:submit.prevent='editarVacante'>
 
     <div>
-        <x-input-label for="titulo" :value="__('Titulo Vacante')" />
+        <x-input-label for="titulo" :value="__('Titulo Curso')" />
         <x-text-input
             id="titulo"
             class="block w-full mt-1"
@@ -10,42 +10,6 @@
             :value="old('titulo')"
         />
         @error('titulo')
-            <livewire:mostrar-alerta :message="$message" />
-        @enderror
-    </div>
-
-    <div>
-        <x-input-label for="salario" :value="__('Salario Mensual')" />
-        <select
-            wire:model="salario"
-            id="salario"
-            class="w-full text-center border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-50"
-        >
-            <option value="">--Selecciona un salario--</option>
-            @foreach ($salarios as $salario)
-                <option value="{{ $salario->id}}">{{$salario->salario}}</option>
-            @endforeach
-
-        </select>
-        @error('salario')
-            <livewire:mostrar-alerta :message="$message" />
-        @enderror
-    </div>
-
-    <div>
-        <x-input-label for="categoria" :value="__('Categoria')" />
-        <select
-            wire:model="categoria"
-            id="categoria"
-            class="w-full text-center border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-50"
-        >
-            <option value="">--Selecciona una categoria--</option>
-            @foreach ($categorias as $categoria)
-                <option value="{{ $categoria->id}}">{{$categoria->categoria}}</option>
-            @endforeach
-
-        </select>
-        @error('categoria')
             <livewire:mostrar-alerta :message="$message" />
         @enderror
     </div>
@@ -92,6 +56,34 @@
 
         </textarea>
         @error('descripcion')
+            <livewire:mostrar-alerta :message="$message" />
+        @enderror
+    </div>
+
+    <div>
+        <x-input-label for="cupos" :value="__('Cupo maximo')" />
+        <x-text-input
+            id="cupos"
+            class="block w-full mt-1"
+            type="text"
+            wire:model="cupos"
+            :value="old('cupos')"
+        />
+        @error('cupos')
+            <livewire:mostrar-alerta :message="$message" />
+        @enderror
+    </div>
+
+    <div>
+        <x-input-label for="costo" :value="__('Costo')" />
+        <x-text-input
+            id="costo"
+            class="block w-full mt-1"
+            type="text"
+            wire:model="costo"
+            :value="old('costo')"
+        />
+        @error('costo')
             <livewire:mostrar-alerta :message="$message" />
         @enderror
     </div>

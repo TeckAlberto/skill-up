@@ -1,45 +1,42 @@
- <div>
+<div>
     <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
 
-        @forelse ($vacantes as $vacante)
+        @forelse ($cursos as $curso)
             <div class="items-center justify-between p-6 text-gray-900 border-b border-gray-200 md:flex">
                 <div class="space-y-5">
-                    <a href="{{ route('vacantes.show', $vacante->id) }}" class="text-2xl font-bold">
-                        {{ $vacante->titulo }}
+                    <a href="{{ route('cursos.show', $curso->id) }}" class="text-2xl font-bold">
+                        {{ $curso->titulo }}
                     </a>
 
-                    <p class="text-sm font-bold text-gray-600">{{$vacante->reclutador->name}}</p>
+                    <p class="text-sm font-bold text-gray-600">{{$curso->reclutador->name}}</p>
 
-                    <p class="text-sm text-gray-500">Ultimo dia: {{$vacante->ultimo_dia->format('d/m/y')}}</p>
+                    <p class="text-sm text-gray-500">Ultimo dia: {{$curso->ultimo_dia->format('d/m/y')}}</p>
 
-                    @if (!$vacante->publicado)
-                        <p class="text-sm text-red-400">Este empleo a sido oculto, revise su publicacion y solucione cualquier irregularidad que note</p>
+                    @if (!$curso->publicado)
+                        <p class="text-sm text-red-400">Este curso a sido oculta, revise su publicacion y solucione cualquier irregularidad que note</p>
                     @endif
                 </div>
 
-                <div class="flex flex-col items-stretch gap-3 mt-5 md:flex-row md:mt-0">
-                    <a
-                        href="{{ route('candidatos.index', $vacante) }}"
-                        class="px-5 py-3 text-xs font-bold text-center text-white uppercase rounded-lg bg-slate-800"
-                    >
-                        {{ $vacante->candidatos->count()}}
-                        @if ($vacante->candidatos->count() == 1)
-                            candidato
+                <div class="flex flex-col items-stretch gap-3 mt-5 cursor-pointer md:flex-row md:mt-0">
+                    <p class="px-5 py-3 text-xs font-bold text-center text-white uppercase rounded-lg bg-slate-800">
+                        {{ $curso->cursantes->count() }}
+                        @if ($curso->cursantes->count() == 1)
+                            Inscrito
                         @else
-                            candidatos
+                            Inscritos
                         @endif
-                    </a>
+                    </p>
 
                     <a
-                        href="{{route('vacantes.edit', $vacante->id)}}"
+                        href="{{route('cursos.edit', $curso->id)}}"
                         class="px-5 py-3 text-xs font-bold text-center text-white uppercase bg-blue-800 rounded-lg"
                     >
                         Editar
                     </a>
 
-                    @if (!$vacante->publicado)
+                    @if (!$curso->publicado)
                         <button
-                            wire:click="$emit('activarPublicacion', {{ $vacante->id }})"
+                            wire:click="$emit('activarPublicacion', {{ $curso->id }})"
                             class="px-5 py-3 text-xs font-bold text-center text-white uppercase bg-green-600 rounded-lg"
                         >
                             Activar
@@ -47,7 +44,7 @@
                     @endif
 
                     <button
-                        wire:click="$emit('mostrarAlerta', {{ $vacante->id }})"
+                        wire:click="$emit('mostrarAlerta', {{ $curso->id }})"
                         class="px-5 py-3 text-xs font-bold text-center text-white uppercase bg-red-600 rounded-lg"
                     >
                         Eliminar
@@ -62,7 +59,7 @@
 
 
     <div class="mt-10">
-        {{ $vacantes->links() }}
+        {{ $cursos->links() }}
     </div>
 </div>
 
@@ -70,10 +67,10 @@
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script>
-        Livewire.on('mostrarAlerta', vacanteId => {
+        Livewire.on('mostrarAlerta', cursoId => {
             Swal.fire({
-                title: 'Eliminar vacante?',
-                text: "Una vacante eliminada no se puede recuperar!",
+                title: 'Eliminar curso?',
+                text: "Un curso eliminado no se puede recuperar!",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
@@ -83,11 +80,11 @@
             }).then((result) => {
                 if (result.isConfirmed) {
                     //Eliminar la vacante desde el servidor
-                    Livewire.emit('eliminarVacante', vacanteId)
+                    Livewire.emit('eliminarCurso', cursoId)
 
 
                     Swal.fire(
-                    'Se elimino la vacante!',
+                    'Se elimino el curso!',
                     'Eliminado correctamente.',
                     'success'
                     )

@@ -15,8 +15,7 @@ return new class extends Migration
     {
         Schema::table('vacantes', function (Blueprint $table) {
             //
-            $table->dropColumn('imagen');
-            $table->dropColumn('empresa');
+            $table->foreignId('modalidad_id')->constrained('modalidades')->onDelete('cascade');
         });
     }
 
@@ -29,8 +28,8 @@ return new class extends Migration
     {
         Schema::table('vacantes', function (Blueprint $table) {
             //
-            $table->string('imagen');
-            $table->string('empresa');
+            $table->dropForeign('vacantes_modalidad_id_foreign');
+            $table->dropColumn(['modalidad_id']);
         });
     }
 };

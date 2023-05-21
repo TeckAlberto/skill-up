@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Vacante;
 use Illuminate\Http\Request;
 
-class VacanteController extends Controller
+ class VacanteController extends Controller
 {
     /**
      * Display a listing of the resource.

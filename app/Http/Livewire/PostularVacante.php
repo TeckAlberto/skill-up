@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Cursante;
 use App\Models\Vacante;
 use App\Notifications\NuevoCandidato;
 use Livewire\Component;
@@ -10,9 +11,6 @@ use Livewire\WithFileUploads;
 class PostularVacante extends Component
 {
 
-    use WithFileUploads;
-
-    public $cv;
     public $vacante;
 
 
@@ -30,7 +28,7 @@ class PostularVacante extends Component
 
         // validar que el usuario no haya postulado a la vacante
         if($this->vacante->candidatos()->where('user_id', auth()->user()->id)->count() > 0) {
-            session()->flash('mensaje', 'Ya postulaste a esta vacante anteriormente');
+            session()->flash('postulado', 'Ya postulaste a esta vacante anteriormente');
         } else {
 
             // Crear el candidato a la vacante
@@ -52,6 +50,10 @@ class PostularVacante extends Component
 
     public function render()
     {
+
+
+        //dd($inscrito);
+
         return view('livewire.postular-vacante');
     }
 }

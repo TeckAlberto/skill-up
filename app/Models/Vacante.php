@@ -15,11 +15,12 @@ class Vacante extends Model
         'titulo',
         'salario_id',
         'categoria_id',
-        'empresa',
+        'modalidad_id',
         'ultimo_dia',
         'descripcion',
-        'imagen',
-        'user_id'
+        'user_id',
+        'tipo',
+        'publicado'
     ];
 
     public function categoria(){
@@ -28,6 +29,10 @@ class Vacante extends Model
 
     public function salario(){
         return $this->belongsTo(Salario::class);
+    }
+
+    public function modalidad(){
+        return $this->belongsTo(Modalidad::class);
     }
 
     public function candidatos(){

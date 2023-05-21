@@ -15,26 +15,26 @@
                         <ul class="w-full divide-y divide-gray-200">
                             @forelse ($vacante->candidatos as $candidato)
                                 <li class="flex items-center p-3">
-                                    <div class="flex-1">
-                                        <p class="text-xl font-medium text-gray-800"><a href="{{ route('candidatos.index', $candidato->id)}}">{{$candidato->user->name}}</a></p>
+                                    <div class="flex-1 space-y-1">
+                                        <p class="text-2xl font-bold text-gray-800"><a href="">{{$candidato->user->name}}</a></p>
                                         <p class="text-xl text-gray-800">{{$candidato->user->email}}</p>
                                         <p class="text-xl font-medium text-gray-800">Dia que se postulo:
                                             <span class="font-normal">{{$candidato->created_at->diffForHumans()}}</span>
                                         </p>
                                     </div>
                                         <a
-                                            href="{{asset('storage/cv/' . $candidato->cv)}}" class="inline-flex items-center shadow-sm px-3 py-0.5 border border-gray-600 leading-5 font-medium text-sm rounded-full text-gray-700 bg-white hover:bg-gray-50"
+                                            href="{{ route('perfiles.show', $candidato->user->id)}}" class="inline-flex items-center px-5 py-2 text-sm font-medium leading-5 text-gray-700 bg-white border border-gray-600 rounded-full shadow-sm hover:bg-gray-100"
                                             target="_blank"
                                             rel="noreferrer noopener"
                                         >
-                                            Ver CV
+                                            Ver
                                         </a>
                                     <div>
 
                                     </div>
                                 </li>
                             @empty
-                                <p class="p-3 text-sm text-center text-gray-600">No haycandidatos aun</p>
+                                <p class="p-3 text-sm text-center text-gray-600">No hay candidatos aun</p>
                             @endforelse
                         </ul>
                     </div>

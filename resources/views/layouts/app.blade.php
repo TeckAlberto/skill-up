@@ -21,12 +21,12 @@
             @include('layouts.navigation')
 
             @auth
-                @if (auth()->user()->rol === 2 && auth()->user()->perfilCompletado())
+                @if (auth()->user()->rol === 2 && !auth()->user()->perfilCompletado())
                     <p class="flex items-center justify-center w-screen font-bold text-center bg-yellow-300 border-2 text-slate-50 border-amber-400 text-md">
                         Se aconseja que termine de completar su perfil
                     </p>
 
-                @elseif(auth()->user()->rol === 1 && auth()->user()->perfilCompletado())
+                @elseif(auth()->user()->rol === 1 && !auth()->user()->perfilCompletado())
                     <p class="flex items-center justify-center w-screen font-bold text-center bg-yellow-300 border-2 text-slate-50 border-amber-400 text-md">
                         Se aconseja que termine de completar su perfil
                     </p>

@@ -17,11 +17,10 @@ return new class extends Migration
             $table->string('titulo');
             $table->foreignId('salario_id')->constrained()->onDelete('cascade');
             $table->foreignId('categoria_id')->constrained()->onDelete('cascade');
-            $table->string('empresa');
             $table->date('ultimo_dia');
             $table->text('descripcion');
-            $table->string('imagen');
             $table->integer('publicado')->default(1);
+            $table->integer('tipo');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
         });
     }
@@ -37,7 +36,7 @@ return new class extends Migration
             $table->dropForeign('vacantes_categoria_id_foreign');
             $table->dropForeign('vacantes_salario_id_foreign');
             $table->dropForeign('vacantes_user_id_foreign');
-            $table->dropColumn(['titulo', 'salario_id', 'categoria_id', 'empresa', 'ultimo_dia', 'descripcion', 'imagen', 'publicado', 'user_id']);
+            $table->dropColumn(['titulo', 'salario_id', 'categoria_id', 'ultimo_dia', 'descripcion', 'publicado', 'tipo', 'user_id']);
         });
     }
 };

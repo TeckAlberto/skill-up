@@ -15,17 +15,24 @@
 
                     @can('create', App\Models\Vacante::class)
                         <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                            <x-nav-link :href="route('vacantes.index')" :active="request()->routeIs('vacantes.index')">
-                                {{ __('Mis vacantes') }}
-                            </x-nav-link>
 
-                            <x-nav-link :href="route('vacantes.create')" :active="request()->routeIs('vacantes.create')">
-                                {{ __('Crear vacante') }}
-                            </x-nav-link>
-                            {{-- request()->routeIs('vacantes.create') --}}
-                            <x-nav-link :href="route('vacantes.create')" :active="request()->routeIs('vacantes.create')">
-                                {{ __('Crear curso') }}
-                            </x-nav-link>
+                            @if (auth()->user()->perfilCompletado() && auth()->user()->rol === 2 )
+                                <x-nav-link :href="route('vacantes.index')" :active="request()->routeIs('vacantes.index')">
+                                    {{ __('Mis vacantes') }}
+                                </x-nav-link>
+                                <x-nav-link :href="route('cursos.index')" :active="request()->routeIs('cursos.index')">
+                                    {{ __('Mis cursos') }}
+                                </x-nav-link>
+                                <x-nav-link :href="route('vacantes.create')" :active="request()->routeIs('vacantes.create')">
+                                    {{ __('Crear Publicacion') }}
+                                </x-nav-link>
+                                {{-- request()->routeIs('vacantes.create') --}}
+
+                            @elseif (auth()->user()->perfilCompletado() && auth()->user()->rol === 1 )
+
+
+
+                            @endif
                         </div>
                     @endcan
 
