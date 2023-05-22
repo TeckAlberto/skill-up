@@ -51,6 +51,11 @@ Route::get('/cursos', [CursoController::class, 'index'])->middleware(['auth', 'c
 //Vista Perfil
 Route::get('/perfiles/{perfil}', [PerfilController::class, 'show'])->middleware(['auth', 'custom.verify'])->name('perfiles.show');
 
+Route::get('/{id:username}/cursos/', [CursoController::class, 'indexuser'])->middleware(['auth', 'custom.verify'])->name('cursos.user');
+
+Route::get('/{id:username}/vacantes/', [VacanteController::class, 'indexuser'])->middleware(['auth', 'custom.verify'])->name('cursos.user');
+
+
 // Notificaciones
 Route::get('/notificaciones', NotificacionController::class)->middleware(['auth', 'custom.verify', 'rol.reclutador'])->name('notificaciones');
 

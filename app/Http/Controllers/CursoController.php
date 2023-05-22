@@ -52,4 +52,9 @@ class CursoController extends Controller
             'curso' => $curso
         ]);
     }
+
+    public function indexuser()
+    {
+
+    }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Vacante;
 use Illuminate\Http\Request;
 
@@ -56,6 +57,13 @@ use Illuminate\Http\Request;
         return view('vacantes.edit', [
             'vacante' => $vacante
         ]);
+    }
+
+    public function indexuser(User $id)
+    {
+        //$vacantes = db::
+
+        return view('vacantes.index');
     }
 
 

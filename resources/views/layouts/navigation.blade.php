@@ -82,6 +82,12 @@
                                 {{ __('Perfil') }}
                             </x-dropdown-link>
 
+                            @if (auth()->user()->rol != 2)
+                                <x-dropdown-link :href="route('perfiles.show', auth()->user()->id)">
+                                    {{ __('Vista') }}
+                                </x-dropdown-link>
+                            @endif
+
                             <!-- Authentication -->
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
@@ -133,9 +139,15 @@
                         {{ __('Mis vacantes') }}
                     </x-responsive-nav-link>
 
+                    <x-responsive-nav-link :href="route('cursos.index')" :active="request()->routeIs('cursos.index')">
+                        {{ __('Mis cursos') }}
+                    </x-responsive-nav-link>
+
                     <x-responsive-nav-link :href="route('vacantes.create')" :active="request()->routeIs('vacantes.create')">
                         {{ __('Crear vacante') }}
                     </x-responsive-nav-link>
+
+
                 @endcan
 
 
@@ -166,6 +178,14 @@
                     <x-responsive-nav-link :href="route('profile.edit')">
                         {{ __('Perfil') }}
                     </x-responsive-nav-link>
+
+                    @if (auth()->user()->rol != 2)
+                        <x-responsive-nav-link :href="route('perfiles.show', auth()->user()->id)">
+                            {{ __('Vista') }}
+                        </x-responsive-nav-link>
+                    @endif
+
+
 
                     <!-- Authentication -->
                     <form method="POST" action="{{ route('logout') }}">

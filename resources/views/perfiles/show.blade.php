@@ -8,8 +8,8 @@
     <div class="flex items-center justify-center mt-10">
         <div class="w-2/3 p-8 bg-white rounded-lg shadow-lg">
           <div class="flex items-center">
-            <div class="flex-shrink-2">
-              <img src="{{ asset('storage/images/' . $perfil->image )}}" alt="Imagen de perfil" class="w-1/3 h-auto rounded-full">
+            <div class="flex-shrink-2 ">
+              <img src="{{ asset('storage/images/' . $perfil->image )}}" alt="Imagen de perfil" class="w-4/5 h-auto rounded-full">
             </div>
             <div class="ml-4">
               <h2 class="mb-4 text-2xl font-semibold">Perfil de Usuario</h2>
