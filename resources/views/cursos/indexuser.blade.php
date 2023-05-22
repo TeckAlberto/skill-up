@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="text-xl font-semibold leading-tight text-gray-800">
-            {{ __('Mis Postulaciones') }}
+            {{ __('Mis Inscripciones') }}
         </h2>
     </x-slot>
 
@@ -14,7 +14,7 @@
                 </div>
             @endif
 
-            <livewire:mostrar-postulaciones />
+            <livewire:mostrar-inscripciones />
         </div>
     </div>
 </x-app-layout>

@@ -59,11 +59,11 @@ use Illuminate\Http\Request;
         ]);
     }
 
-    public function indexuser(User $id)
+    public function indexuser()
     {
         //$vacantes = db::
 
-        return view('vacantes.index');
+        return view('vacantes.indexuser');
     }
 
 

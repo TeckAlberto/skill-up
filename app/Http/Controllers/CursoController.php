@@ -55,6 +55,7 @@ class CursoController extends Controller
 
     public function indexuser()
     {
+        return view('cursos.indexuser');
 
     }
 }

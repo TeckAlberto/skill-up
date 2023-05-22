@@ -28,13 +28,25 @@
                                 </x-nav-link>
                                 {{-- request()->routeIs('vacantes.create') --}}
 
-                            @elseif (auth()->user()->perfilCompletado() && auth()->user()->rol === 1 )
-
-
-
                             @endif
                         </div>
                     @endcan
+
+                    @if (auth()->user()->perfilCompletado() && auth()->user()->rol === 1 )
+
+                        <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+
+                            <x-nav-link :href="route('vacantes.user', auth()->user()->id)" :active="request()->routeIs('vacantes.user')">
+                                {{ __('Mis postulaciones') }}
+                            </x-nav-link>
+                            <x-nav-link :href="route('cursos.user', auth()->user()->id)" :active="request()->routeIs('cursos.user')">
+                                {{ __('Mis inscripcioness') }}
+                            </x-nav-link>
+
+                        </div>
+
+                    @endif
+
 
                     @if(auth()->user()->rol === 3)
 
